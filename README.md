@@ -1,56 +1,64 @@
-# Welcome to your Expo app 👋
+# PNG Labs
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+The lab app I built for **IS325 Mobile Application Development**. It's one Expo app that grows lab by lab, from first-run setup through navigation, forms, network data, local storage and device location, using Papua New Guinea data throughout.
 
-## Get started
+Built with **Expo SDK 57**, **Expo Router** and **TypeScript**.
 
-1. Install dependencies
+## What the app does
 
-   ```bash
-   npm install
-   ```
+| Tab       | What it shows                                                                                                     | Lab  |
+| --------- | ----------------------------------------------------------------------------------------------------------------- | ---- |
+| Provinces | List of PNG provinces; tap a row to open its detail screen                                                        | 4, 5 |
+| Search    | Case-insensitive search, with different messages for "no data" and "no matches"                                   | 4, 5 |
+| Register  | Four-field registration form with per-field validation                                                            | 6    |
+| Weather   | 7-day Open-Meteo forecast for Lae, Port Moresby and Mount Hagen, with pull-to-refresh and offline error handling  | 7    |
+| Notes     | Notes saved on the device, a delete confirmation, and location tagging with a fallback when permission is refused | 8    |
+| About     | App information                                                                                                   | 5    |
 
-2. Start the app
+## What each lab covered
 
-   ```bash
-   npx expo start
-   ```
+| Lab | Topic              | Key skills                                                                         |
+| --- | ------------------ | ---------------------------------------------------------------------------------- |
+| 0   | Environment setup  | Node, Expo Go, Fast Refresh, reading red-screen errors, Git                        |
+| 1   | Core components    | `View`, `Text`, `Image`, `Pressable`, `StyleSheet` (student ID card)               |
+| 2   | Flexbox            | `flexDirection`, `justifyContent`, `alignItems`, flex ratios, absolute positioning |
+| 3   | State and props    | `useState`, conditional rendering, typed props (counter, tip calculator)           |
+| 4   | Lists              | `FlatList`, `keyExtractor`, extracted row components, filtering                    |
+| 5   | Navigation         | Expo Router stack, `(tabs)` route group, dynamic `[id]` route                      |
+| 6   | Forms              | Controlled inputs, validation, `KeyboardAvoidingView`                              |
+| 7   | Remote data        | `fetch`, `async`/`await`, loading, error, empty and success states, retry          |
+| 8   | Storage and device | AsyncStorage persistence, `expo-location`, permission handling                     |
 
-In the output, you'll find options to open the app in a
+Lab 9, the consolidation project, is in its own repository: [market-price-tracker](https://github.com/victorasipali/market-price-tracker).
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Project structure
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+src/
+  app/
+    _layout.tsx           Root stack
+    (tabs)/               Provinces, Search, Register, Weather, Notes, About
+    provinces/[id].tsx    Province detail (dynamic route)
+  components/             ProvinceRow
+  data/                   Province dataset
+  services/               Weather API, notes storage, location
+labs/
+  lab-00 … lab-08/        Code snapshot at the end of each lab, with notes and answers
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+`src/` is the running app (its state at the end of Lab 8). `labs/` keeps each earlier stage, such as the ID card, the Flexbox layouts and the tip calculator, so you can see how the app grew. Expo Router only reads `src/app`, so nothing in `labs/` is loaded when the app runs.
 
-### Other setup steps
+## Getting started
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+```
+git clone https://github.com/victorasipali/png-labs.git
+cd png-labs
+npm install
+npx expo start
+```
 
-## Learn more
+Scan the QR code with Expo Go. If your phone and PC are on different networks, run `npx expo start --tunnel`.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Author
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Victor Asipali, Bachelor of Business in Information Technology, Year 3
